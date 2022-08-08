@@ -20,7 +20,6 @@ def build_GAN_model(latent_dim, img_shape, input_img_num):
 
     noise = Input(latent_dim, name='g_model_input')
     prediction = prednet(noise)
-    prediction = STIC_attention(prediction)
     result_img = Lambda(simple_slice, output_shape=img_shape, arguments={'index': input_img_num})(prediction)
     real_img = Lambda(simple_slice, output_shape=img_shape, arguments={'index': input_img_num})(noise)
     generated_images = Concatenate(axis=3)([real_img, result_img])
