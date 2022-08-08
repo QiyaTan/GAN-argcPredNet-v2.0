@@ -5,6 +5,7 @@ from keras import activations
 from keras.layers import Recurrent
 from keras.layers import Conv2D, UpSampling2D, MaxPooling2D
 from keras.engine import InputSpec
+from function import STIC_attention
 class Argc_PredNet(Recurrent):
 
     def __init__(self, stack_sizes, R_stack_sizes,
@@ -15,7 +16,7 @@ class Argc_PredNet(Recurrent):
                  data_format=K.image_data_format(), **kwargs):
         self.stack_sizes = stack_sizes
         self.nb_layers = len(stack_sizes)
-        assert len(R_stack_sizes) == self.nb_layers, 'len(R_stack_sizes) must equal len(stack_sizes)'  # assert语句，用于确保R部层数与A部一样
+        assert len(R_stack_sizes) == self.nb_layers, 'len(R_stack_sizes) must equal len(stack_sizes)'  
         self.R_stack_sizes = R_stack_sizes
         assert len(A_filt_sizes) == (self.nb_layers - 1), 'len(A_filt_sizes) must equal len(stack_sizes) - 1'
         self.A_filt_sizes = A_filt_sizes
@@ -177,6 +178,7 @@ class Argc_PredNet(Recurrent):
         r_tm1 = states[:self.nb_layers]
         c_tm1 = states[self.nb_layers:2*self.nb_layers]
         e_tm1 = states[2*self.nb_layers:3*self.nb_layers]
+        w = states[3*self.nb_layers]
 
         if self.extrap_start_time is not None:
             t = states[-1]
@@ -185,12 +187,21 @@ class Argc_PredNet(Recurrent):
         c = []
         r = []
         e = []
+        # w = []
         # R Unit
         for l in reversed(range(self.nb_layers)):
             inputs = [r_tm1[l], e_tm1[l]]
             if l < self.nb_layers - 1:
-
-                inputs.append(r_up)
+                if l == 1:
+                    r_up = Reshape((1, 64, 64, 128))(r_up)
+                    r_up_before = Reshape((1,64,64,128))(r_tm1[l])
+                    r_final = Concatenate(axis=1)([r_up_before, r_up])
+                    r_final = STIC_attention(r_final)
+                    r_up = r_final[:,-1,:,:,:]
+                    #w = w + r_up
+                    inputs.append(r_up)
+                else:
+                    inputs.append(r_up)
 
             inputs = K.concatenate(inputs, axis=self.channel_axis)
             i = self.conv_layers['i'][l].call(inputs)
