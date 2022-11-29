@@ -13,7 +13,7 @@ The experimental data is the radar mosaic of Huanan area provided by Guangdong M
 # Train
 The files of the training model are stored in the GAN-argcPredNet_Train.py file. By inputing your own data into X_train, you can start training.
 
- X_train = hkl.load(data_dir+data_name+'.hkl') / 255.
+<pre><code>X_train = hkl.load(data_dir+data_name+'.hkl') / 255.
 
 Save the weight files of the generator and the discriminator respectively:
 
