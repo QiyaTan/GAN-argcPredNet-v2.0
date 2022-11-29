@@ -17,13 +17,13 @@ The files of the training model are stored in the GAN-argcPredNet_Train.py file.
 
 Save the weight files of the generator and the discriminator respectively:
 
- g.save_weights(weights_dir+'gen_weight'+epoch + '.h5')
- d.save_weights(weights_dir+'dis_weight' + epoch + '.h5')
+<pre><code>g.save_weights(weights_dir+'gen_weight'+epoch + '.h5')
+<pre><code>d.save_weights(weights_dir+'dis_weight' + epoch + '.h5')
 
 # Prediction
 The prediction code is stored in the Predict.py file. X_test = hkl.load(TEST_DIR) loads the test set file, model.load_weights(WEIGHTS_DIR) loads the trained weight file. Then through test_predictImage() functions respectively generate prediction data.Finally save the prediction data by:
 
- hkl.dump(Preimage, PREDICT_DIR)
+<pre><code>hkl.dump(Preimage, PREDICT_DIR)
 
 # Note
 You can cite the GAN-argcPredNet v2.0 model repository as follows:
