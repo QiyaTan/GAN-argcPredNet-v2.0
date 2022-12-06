@@ -1,7 +1,7 @@
 # GAN-argcPredNet v2.0
 This is a radar echo extrapolation model, which can improve the accuracy of rainfall prediction.
 
-The generator is stored in the ArgcPredNet.py file, and the completion process of building GAN-argcPredNet v2.0 is in the Train.py file.
+The generator is stored in the ``ArgcPredNet.py`` file, and the completion process of building GAN-argcPredNet v2.0 is in the Train.py file.
 
 This network is trained to be a prediction model that extrapolates the next 7 frames from the first 5 frames.
 
