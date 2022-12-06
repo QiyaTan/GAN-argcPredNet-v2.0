@@ -1,7 +1,7 @@
 # GAN-argcPredNet v2.0
 This is a radar echo extrapolation model, which can improve the accuracy of rainfall prediction.
 
-The generator is stored in the ``ArgcPredNet.py`` file, and the completion process of building GAN-argcPredNet v2.0 is in the Train.py file.
+The generator is stored in the ``ArgcPredNet.py`` file, and the completion process of building GAN-argcPredNet v2.0 is in the ``Train.py`` file.
 
 This network is trained to be a prediction model that extrapolates the next 7 frames from the first 5 frames.
 
@@ -11,8 +11,8 @@ This model references the depth coding structure of the prednetmodel proposed by
 The experimental data is the radar mosaic of Huanan area provided by Guangdong Meteorological Bureau. It does not support the open sharing.For data access, please contact Kun Zheng (ZhengK@cug.edu.cn) and Qiya Tan (ses_tqy@cug.edu.cn).
 
 # Train
-The files of the training model are stored in the GAN-argcPredNet_Train.py file. By inputing your own data into X_train, you can start training.
-
+The files of the training model are stored in the ``GAN-argcPredNet_Train.py`` file. By inputing your own data into ``X_train``, you can start training.
+``
 <pre><code>X_train = hkl.load(data_dir+data_name+'.hkl') / 255.</code></pre>
 
 Save the weight files of the generator and the discriminator respectively:
@@ -21,7 +21,7 @@ Save the weight files of the generator and the discriminator respectively:
 <pre><code>d.save_weights(weights_dir+'dis_weight' + epoch + '.h5')</code></pre>
 
 # Prediction
-The prediction code is stored in the Predict.py file. X_test = hkl.load(TEST_DIR) loads the test set file, model.load_weights(WEIGHTS_DIR) loads the trained weight file. Then through test_predictImage() functions respectively generate prediction data.Finally save the prediction data by:
+The prediction code is stored in the ``Predict.py`` file. ``X_test = hkl.load(TEST_DIR)`` loads the test set file, ``model.load_weights(WEIGHTS_DIR)`` loads the trained weight file. Then through ``test_predictImage()`` functions respectively generate prediction data.Finally save the prediction data by:
 
 <pre><code>hkl.dump(Preimage, PREDICT_DIR)</code></pre>
 
