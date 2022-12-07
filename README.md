@@ -10,6 +10,12 @@ This model references the depth coding structure of the prednetmodel proposed by
 # Radar data
 The experimental data is the radar mosaic of Huanan area provided by Guangdong Meteorological Bureau. It does not support the open sharing.For data access, please contact Kun Zheng (ZhengK@cug.edu.cn) and Qiya Tan (ses_tqy@cug.edu.cn).
 
+# ArgcPredNet
+ArgcPredNet is the core of the generator. You can adjust the parameters based on your data.
+
+# Function
+``function.py`` contains the modules needed for our model, such as the loss function.
+
 # Train
 The files of the training model are stored in the ``GAN-argcPredNet_Train.py`` file. By inputing your own data into ``X_train``, you can start training.
 
