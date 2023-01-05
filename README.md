@@ -31,7 +31,7 @@ The prediction code is stored in the ``Predict.py`` file. ``X_test = hkl.load(TE
 
 <pre><code>hkl.dump(Preimage, PREDICT_DIR)</code></pre>
 
-We have provided a sequence of 12 images and the model weight for prediction. You can process the images as a hkl file and input it to the specified location in ``Predict.py``.
+We have provided a sequence of 12 images and the model weight for prediction. We have also processed the image as ``test.hkl``. You can input ``test.hkl`` to the specified location in ``Predict.py``.
 
 # Note
 You can cite the GAN-argcPredNet v2.0 model repository as follows:
